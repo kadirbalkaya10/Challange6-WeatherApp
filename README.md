@@ -21,7 +21,7 @@ To use the portfolio:
 
 - Simply visit the provided website URL.
 - Search for City.
-  -Check weather conditions for upcoming 5 days
+- Check weather conditions for upcoming 5 days
 
 ## License
 
