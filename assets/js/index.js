@@ -69,3 +69,13 @@ function fetchForecast(data) {
     })
     .catch((error) => console.error("Error fetching forecast data:", error));
 }
+
+// Display WeatherData
+function displayWeatherData(cityName, data) {
+  searchResultList.innerHTML = `
+    <li class="list-group-item fs-2">${cityName} Weather</li>
+    <li class="list-group-item">Temp: ${data.main.temp}°F</li>
+    <li class="list-group-item">Wind: ${data.wind.speed} m/h</li>
+    <li class="list-group-item">Humidity: ${data.main.humidity}%</li>
+  `;
+}
