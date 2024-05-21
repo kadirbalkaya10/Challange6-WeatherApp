@@ -45,3 +45,27 @@ function fetchCityWeather(data) {
 
   fetchForecast(data);
 }
+
+// FetchForecast data
+function fetchForecast(data) {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=${data.lat}&lon=${data.lon}&appid=${apiKey}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((forecastData) => {
+      forecastEl.innerHTML = "";
+      forecastData.list.forEach((weather) => {
+        const time = new Date(weather.dt_txt);
+        if (time.getHours() === 12) {
+          createWeatherElement({
+            time: time.toLocaleDateString(),
+            temp: weather.main.temp,
+            wind: weather.wind.speed,
+            humidity: weather.main.humidity,
+            icon: weather.weather[0].icon,
+            desc: weather.weather[0].description,
+          });
+        }
+      });
+    })
+    .catch((error) => console.error("Error fetching forecast data:", error));
+}
