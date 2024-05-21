@@ -123,3 +123,31 @@ function createWeatherElement(data) {
   weatherEl.appendChild(body);
   forecastEl.appendChild(weatherEl);
 }
+
+// Adding prev search to history but only keep the 5 items to show only last 5 search
+function addHistory(data) {
+  let history = JSON.parse(localStorage.getItem("cityHistory")) || [];
+  history = history.filter(
+    (city) => city.lat !== data.lat && city.lon !== data.lon
+  );
+  history.unshift(data);
+  if (history.length > 5) {
+    history.pop();
+  }
+  localStorage.setItem("cityHistory", JSON.stringify(history));
+  renderHistory();
+}
+
+// Display search history
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem("cityHistory")) || [];
+  prevSearch.innerHTML = '<h1 class="fs-3 mb-3">History</h1>';
+  history.forEach((city) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "list-group-item list-group-item-action";
+    button.textContent = `${city.city}`;
+    button.addEventListener("click", () => fetchCityWeather(city));
+    prevSearch.appendChild(button);
+  });
+}
