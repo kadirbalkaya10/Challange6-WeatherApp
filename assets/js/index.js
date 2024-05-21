@@ -79,3 +79,47 @@ function displayWeatherData(cityName, data) {
     <li class="list-group-item">Humidity: ${data.main.humidity}%</li>
   `;
 }
+
+// Create weather element for cards
+function createWeatherElement(data) {
+  const weatherEl = document.createElement("div");
+  weatherEl.className = "card text-bg-primary m-3";
+  weatherEl.style.maxWidth = "18rem";
+
+  const header = document.createElement("div");
+  header.className = "card-header";
+  header.textContent = data.time;
+  weatherEl.appendChild(header);
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+
+  const title = document.createElement("h5");
+  title.className = "card-title";
+  title.textContent = `Temp: ${data.temp}°F`;
+  body.appendChild(title);
+
+  const wind = document.createElement("p");
+  wind.className = "card-text";
+  wind.textContent = `Wind: ${data.wind} MPH`;
+  body.appendChild(wind);
+
+  const humidity = document.createElement("p");
+  humidity.className = "card-text";
+  humidity.textContent = `Humidity: ${data.humidity}%`;
+  body.appendChild(humidity);
+
+  const desc = document.createElement("p");
+  desc.className = "card-text";
+  desc.textContent = data.desc;
+  body.appendChild(desc);
+
+  if (data.icon) {
+    const icon = document.createElement("img");
+    icon.src = `https://openweathermap.org/img/wn/${data.icon}@2x.png`;
+    body.appendChild(icon);
+  }
+
+  weatherEl.appendChild(body);
+  forecastEl.appendChild(weatherEl);
+}
