@@ -23,6 +23,10 @@ To use the portfolio:
 - Search for City.
 - Check weather conditions for upcoming 5 days
 
+### Quick Demo
+
+![Usage](./assets/weather.gif)
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
