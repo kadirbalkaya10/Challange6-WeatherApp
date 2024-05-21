@@ -14,3 +14,21 @@ searchForm.addEventListener("submit", (e) => {
     fetchCityCoordinates(city);
   }
 });
+
+// Fetch City Coordinates
+function fetchCityCoordinates(city) {
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length > 0) {
+        const { lat, lon, name, state } = data[0];
+        const cityData = { lat, lon, city: name, state };
+        fetchCityWeather(cityData);
+        addHistory(cityData);
+      } else {
+        alert("City not found!");
+      }
+    })
+    .catch((error) => console.error("Error fetching city coordinates:", error));
+}
