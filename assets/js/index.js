@@ -32,3 +32,16 @@ function fetchCityCoordinates(city) {
     })
     .catch((error) => console.error("Error fetching city coordinates:", error));
 }
+
+// FetchCityWeather using fetchCoordinates function to get city coordinates and use as parameter in another api request
+function fetchCityWeather(data) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${data.lat}&lon=${data.lon}&units=imperial&appid=${apiKey}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((weatherData) => {
+      displayWeatherData(data.city, weatherData);
+    })
+    .catch((error) => console.error("Error fetching weather data:", error));
+
+  fetchForecast(data);
+}
