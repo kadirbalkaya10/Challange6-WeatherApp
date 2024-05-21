@@ -151,3 +151,14 @@ function renderHistory() {
     prevSearch.appendChild(button);
   });
 }
+
+// Loads history
+function loadLastHistory() {
+  const history = JSON.parse(localStorage.getItem("cityHistory")) || [];
+  if (history.length > 0) {
+    fetchCityWeather(history[0]);
+  }
+}
+
+loadLastHistory();
+renderHistory();
