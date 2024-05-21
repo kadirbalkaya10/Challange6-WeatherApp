@@ -13,7 +13,7 @@ This project serves how to work with fetch api request. It's designed to check t
 
 ## Installation
 
-You can access the portfolio by visiting [this link](https://kadirbalkaya10.github.io/Challange6-WeatherApp/).
+You can access the website by visiting [this link](https://kadirbalkaya10.github.io/Challange6-WeatherApp/).
 
 ## Usage
 
